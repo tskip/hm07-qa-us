@@ -14,6 +14,17 @@ const requestBody = {"products":[
 ]
 }
 
+const invalidRequestBody = {"products":[
+    {
+		"id": "zero",
+		"quantity": 1
+	},
+	{
+		"id": 4,
+		"quantity": 5
+	}
+]}
+
 test('status should be 200', async () => {
     try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses/check`, {
@@ -36,7 +47,7 @@ test('status should be 200', async () => {
 
 });
 
-test('status should be 404', async () => {
+test('status should be 404 when using an invalid API URL', async () => {
     try {
 		const response = await fetch(`${config.INVALID_API_URL}/api/v1/warehouses/check`, {
 			method: 'POST',
@@ -57,17 +68,6 @@ test('status should be 404', async () => {
 	expect(actualStatus).toBe(404);
 
 });
-
-const invalidRequestBody = {"products":[
-    {
-		"id": "zero",
-		"quantity": 1
-	},
-	{
-		"id": 4,
-		"quantity": 5
-	}
-]}
 
 test('With a string in the id field the status should be 504', async () => {
     try {
