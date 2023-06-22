@@ -16,19 +16,6 @@ const requestBody = {
 	]
 }
 
-const invalidRequestBody = {
-	"productsList": [
-	{
-		"id": "two",
-		"quantity": 4
-	},
-	{
-		"id": 5,
-		"quantity": 2
-	},
-],"name": "Sprint 7 Project"
-}
-
 const invalidRequestBody2 = {
 	"productsList": [
 	{
