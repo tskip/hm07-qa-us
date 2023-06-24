@@ -1,4 +1,5 @@
 // eslint-disable-next-line no-undef
+const { update } = require('carthage/core/required/model');
 const config = require('../config');
 let actualStatus;
 
@@ -129,7 +130,7 @@ test('Response body should contain true', async () => {
 			headers: {
 			'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(invalidRequestBody2)
+			body: JSON.stringify(updatePrice)
 		});
 
 		//extract response body
@@ -152,7 +153,7 @@ test('If product can not be found the response body should contain "Not Found"',
 			headers: {
 			'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(invalidRequestBody2)
+			body: JSON.stringify(updatePrice)
 		});
 
 		//extract response body
