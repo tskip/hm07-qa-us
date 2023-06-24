@@ -27,11 +27,6 @@ const invalidRequestBody = {"products":[
 	}
 ]}
 
-const createKit = {
-	"cardId": 2,
-	"name": "sprint7project"
-}
-
 const requestBody2 = {
 	"productsList": [
 	{
@@ -139,13 +134,14 @@ test('Resposne body should contain....', async () => {
 			body: JSON.stringify(requestBody2)
 		});
 
+		//extract response body
 		actualResponseBody = await response.json();
 
 	} catch (error) {
 		console.error(error);
 	}
 
-	//console.log(responseBody);
+	//check for specific courier service
 	expect(actualResponseBody.courierService).toBe("Order and Go");
 });
 
