@@ -1,4 +1,6 @@
 // eslint-disable-next-line no-undef
+const { my } = require('carthage');
+const { response } = require('carthage/core/required/api');
 const config = require('../config');
 let actualStatus;
 
@@ -24,6 +26,20 @@ const invalidRequestBody = {"products":[
 		"quantity": 5
 	}
 ]}
+
+const createKit = {
+	"cardId": 2,
+	"name": "sprint7project"
+}
+
+const requestBody2 = {
+	"productsList": [
+	{
+		"id": 5,
+		"quantity": 2
+	}
+	]
+}
 
 test('status should be 200', async () => {
     try {
@@ -86,11 +102,50 @@ test('With a string in the id field the status should be 504', async () => {
 		console.error(error);
 	}
 
-	//test print the status code
-	//console.log(actualStatus);
-
 	//check status code
 	expect(actualStatus).toBe(504);
 	
-
 });
+
+test('Status code should be 201', async () => {
+	let actualStatusCode;
+	try{
+		const response = await fetch(`${config.API_URL}/api/v1/orders`, {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json'
+			},
+			body: JSON.stringify(requestBody2)
+		});
+
+		//get status code
+		actualStatusCode = response.status;
+
+	}catch (error) {
+		console.error(error);
+	}
+
+	expect(actualStatusCode).toBe(201);
+});
+
+test('Resposne body should contain....', async () => {
+    let actualResponseBody;
+	try {
+		const response = await fetch(`${config.API_URL}/api/v1/orders`, {
+			method: 'POST',
+			headers: {
+			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody2)
+		});
+
+		actualResponseBody = await response.json();
+
+	} catch (error) {
+		console.error(error);
+	}
+
+	//console.log(responseBody);
+	expect(actualResponseBody.courierService).toBe("Order and Go");
+});
+
