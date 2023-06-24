@@ -26,9 +26,23 @@ test('status should be 404 when using an invalid API URL', async () => {
 		console.error(error);
 	}
 
-	//print status code
-	//console.log(actualStatus);
-
 	//check status code
 	expect(actualStatus).toBe(404);
 });
+
+test('Body should contain.....', async () => {
+	let actualResponseBody;
+	try {
+		//make request
+		const response = await fetch(`${config.API_URL}/api/v1/kits/1`);
+		//extract body
+		actualResponseBody = await response.json();
+	} catch (error) {
+		console.error(error);
+	}
+
+	//check body
+	expect(actualResponseBody.name).toBe("For picnic");
+
+});
+
