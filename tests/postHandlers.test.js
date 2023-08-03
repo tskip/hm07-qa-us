@@ -143,5 +143,6 @@ test('Resposne body should contain....', async () => {
 
 	//check for specific courier service
 	expect(actualResponseBody.courierService).toBe("Order and Go");
+	//Just adding a test change to show a student how to properly push changes
 });
 
